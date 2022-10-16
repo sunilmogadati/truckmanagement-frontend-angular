@@ -11,6 +11,15 @@ import { TruckingService } from './trucking.service';
 export class AppComponent {
   title = 'truckmanagement-frontend-angular';
 
+  make: string = "";
+  response: any;
+
+  search(){
+    this.http.get('http://localhost:9000/api/v1/truck/make/{'+ this.make+'}/')
+    .subscribe((response) => { this.response = response;})
+    console.log(this.response);
+  }
+
 
 
    constructor(private svc: TruckingService, private http: HttpClient, )
