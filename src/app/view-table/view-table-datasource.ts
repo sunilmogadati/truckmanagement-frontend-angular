@@ -1,3 +1,4 @@
+import { Truck } from './../truck.model';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -5,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge, of } from 'rxjs';
 import { HttpClient, HttpHandler, HttpXhrBackend } from '@angular/common/http';
 import { ms1Url } from 'src/environments/environment';
-import { catchError} from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface ViewTableItem {
@@ -15,10 +15,7 @@ export interface ViewTableItem {
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: ViewTableItem[] = [
-  {make: 'make', model: 'model', year: 2022},
-  {make: 'make', model: 'model', year: 2022},
-];
+const EXAMPLE_DATA: ViewTableItem[] = [];
 
 /**
  * Data source for the ViewTable view. This class should
@@ -32,11 +29,17 @@ export class ViewTableDataSource extends DataSource<ViewTableItem> {
 
   constructor() {
     super();
+    this.data = [];
     const httpClient = new HttpClient(new HttpXhrBackend({
       build: () => new XMLHttpRequest()
     }));
-    httpClient.get(`${ms1Url}/api/v1/truck`)
-    .subscribe(data => {console.log(data);})
+    httpClient.get<Truck[]>(`${ms1Url}/api/v1/truck`)
+    .subscribe(response => {
+      response.forEach(element => {
+        this.data.push({make: element.make, model: element.model, year: element.year});
+      });
+      this.paginator?._changePageSize(this.paginator.pageSize);
+    })
   }
 
   /**
