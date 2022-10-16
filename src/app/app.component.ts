@@ -26,8 +26,8 @@ export class AppComponent {
     //hit f12 and click console
     //open array thats in console
     //should be what you posted to database.
-     let obs = this.http.get<any>('http://localhost:9000/api/v1/truck/');
-     obs.subscribe((response) => console.log(response));
+    //  let obs = this.http.get<any>('http://localhost:9000/api/v1/truck/');
+    //  obs.subscribe((response) => console.log(response));
   }
 
 

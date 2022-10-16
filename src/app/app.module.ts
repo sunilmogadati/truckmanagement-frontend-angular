@@ -21,6 +21,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AddComponent } from './add/add.component';
+import { ViewTableComponent } from './view-table/view-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,7 @@ import { AddComponent } from './add/add.component';
     NavComponent,
     NavbarComponent,
     AddComponent,
+    ViewTableComponent,
 
   ],
   imports: [
@@ -44,7 +49,10 @@ import { AddComponent } from './add/add.component';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
 
   ],
   providers: [TruckingService],
