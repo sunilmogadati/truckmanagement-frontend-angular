@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {path: 'view', component:ViewTableComponent},
   {path: 'add', component:AddComponent},
-  {path: '**', component:ViewComponent}
+  {path: '**', component:ViewTableComponent}
 ];
 
 @NgModule({
