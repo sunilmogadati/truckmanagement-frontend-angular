@@ -12,6 +12,7 @@ export interface ViewTableItem {
   make: string;
   model: string;
   year: number;
+  id: number;
 }
 
 // TODO: replace this with real data from your application
@@ -33,13 +34,44 @@ export class ViewTableDataSource extends DataSource<ViewTableItem> {
     const httpClient = new HttpClient(new HttpXhrBackend({
       build: () => new XMLHttpRequest()
     }));
-    httpClient.get<Truck[]>(`${ms1Url}/api/v1/truck`)
-    .subscribe(response => {
-      response.forEach(element => {
-        this.data.push({make: element.make, model: element.model, year: element.year});
-      });
-      this.paginator?._changePageSize(this.paginator.pageSize);
-    })
+    let finalURL = '';
+    if ((document.cookie.split("=")[1] == undefined) || document.cookie.split("=")[1] == '') {
+      finalURL = `${ms1Url}/api/v1/truck`;
+      httpClient.get<Truck[]>(finalURL)
+      .subscribe(response => {
+        response.forEach(element => {
+          this.data.push({make: element.make ?? 'Unknown', model: element.model ?? 'Unknown', year: element.year, id: element.id});
+        });
+        this.paginator?._changePageSize(this.paginator.pageSize);
+      })
+    } else {
+      finalURL = `${ms1Url}/api/v1/truck?make=${document.cookie.split("=")[1]}`;
+      httpClient.get<Truck[]>(finalURL)
+      .subscribe(response => {
+        response.forEach(element => {
+          this.data.push({make: element.make ?? 'Unknown', model: element.model ?? 'Unknown', year: element.year, id: element.id});
+        });
+        this.paginator?._changePageSize(this.paginator.pageSize);
+      })
+      finalURL = `${ms1Url}/api/v1/truck?model=${document.cookie.split("=")[1]}`;
+      httpClient.get<Truck[]>(finalURL)
+      .subscribe(response => {
+        response.forEach(element => {
+          this.data.push({make: element.make ?? 'Unknown', model: element.model ?? 'Unknown', year: element.year, id: element.id});
+        });
+        this.paginator?._changePageSize(this.paginator.pageSize);
+      })
+      if (/^\d+$/.test(document.cookie.split("=")[1])){
+        finalURL = `${ms1Url}/api/v1/truck?year=${document.cookie.split("=")[1]}`;
+        httpClient.get<Truck[]>(finalURL)
+        .subscribe(response => {
+          response.forEach(element => {
+            this.data.push({make: element.make ?? 'Unknown', model: element.model ?? 'Unknown', year: element.year, id: element.id});
+          });
+          this.paginator?._changePageSize(this.paginator.pageSize);
+        })
+    }
+    }
   }
 
   /**

@@ -15,4 +15,4 @@ export const environment = {
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 
-export const ms1Url = `http://ec2-100-27-25-68.compute-1.amazonaws.com:9000`;
+export const ms1Url = `http://34.237.142.190:9000`;

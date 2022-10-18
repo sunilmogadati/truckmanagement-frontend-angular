@@ -25,6 +25,8 @@ import { ViewTableComponent } from './view-table/view-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { DetailsComponent } from './details/details.component';
+import { DetailTableComponent } from './detail-table/detail-table.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MatSortModule } from '@angular/material/sort';
     NavbarComponent,
     AddComponent,
     ViewTableComponent,
+    DetailsComponent,
+    DetailTableComponent,
 
   ],
   imports: [

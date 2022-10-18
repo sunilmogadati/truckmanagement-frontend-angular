@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TruckingService } from './trucking.service';
-
 
 @Component({
   selector: 'app-root',
@@ -15,17 +15,16 @@ export class AppComponent {
   response: any;
 
   search(){
-    this.http.get('http://localhost:9000/api/v1/truck/make/{'+ this.make+'}/')
-    .subscribe((response) => { this.response = response;})
-    console.log(this.response);
+    document.cookie = `searchbar=${(<HTMLInputElement>document.getElementById("input"))?.value.trim()}; expires=Thu, 01 Jan 2970 00:00:00 UTC; path=/;`;
+    this.router.navigate(['view']).then(() => {window.location.reload();});
   }
 
 
 
-   constructor(private svc: TruckingService, private http: HttpClient, )
-    {
-      this.svc.printToConsole("Got the Service!!!");
-    }
+  constructor(private svc: TruckingService, private http: HttpClient, private router:Router)
+  {
+    this.svc.printToConsole("Got the Service!!!");
+  }
 
   ngOnInit() {
     //this.http.get('https://api.github.com/users/Larocque240')
