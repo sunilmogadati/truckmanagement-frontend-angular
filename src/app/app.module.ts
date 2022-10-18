@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule} from '@angular/material/button';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { from, Observable } from 'rxjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -27,6 +27,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DetailsComponent } from './details/details.component';
 import { DetailTableComponent } from './detail-table/detail-table.component';
+import { CreateComponent } from './create/create.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,7 @@ import { DetailTableComponent } from './detail-table/detail-table.component';
     ViewTableComponent,
     DetailsComponent,
     DetailTableComponent,
+    CreateComponent,
 
   ],
   imports: [
@@ -56,7 +62,12 @@ import { DetailTableComponent } from './detail-table/detail-table.component';
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule
 
   ],
   providers: [TruckingService],

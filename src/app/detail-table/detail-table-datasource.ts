@@ -44,11 +44,13 @@ export class DetailTableDataSource extends DataSource<DetailTableItem> {
       this.data.push({name: 'Space', data: response.space ?? 'Unknown'});
       this.data.push({name: 'Type', data: response.type ?? 'Unknown'});
       this.data.push({name: 'Miles Per Gallon', data: `${response.mpg}`});
-      this.data.push({name: 'Routing Status', data: response.routes[0].status ?? 'Unknown'});
-      this.data.push({name: 'Destination', data: response.routes[0].destination ?? 'Unknown'});
-      this.data.push({name: 'Start Date', data: response.routes[0].startDate ?? 'Unknown'});
-      this.data.push({name: 'End Date', data: response.routes[0].endDate ?? 'Unknown'});
-      this.data.push({name: 'Source', data: response.routes[0].source ?? 'Unknown'});
+      if (response.routes[0]) {
+        this.data.push({name: 'Routing Status', data: response.routes[0].status ?? 'Unknown'});
+        this.data.push({name: 'Destination', data: response.routes[0].destination ?? 'Unknown'});
+        this.data.push({name: 'Start Date', data: response.routes[0].startDate ?? 'Unknown'});
+        this.data.push({name: 'End Date', data: response.routes[0].endDate ?? 'Unknown'});
+        this.data.push({name: 'Source', data: response.routes[0].source ?? 'Unknown'});
+      }
       this.paginator?._changePageSize(this.paginator.pageSize);
     })
   }

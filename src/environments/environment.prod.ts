@@ -2,4 +2,4 @@ export const environment = {
   production: true
 };
 
-export const ms1Url = `http://34.237.142.190:9000`;
+export const ms1Url = `http://3.238.20.177:9000`;
