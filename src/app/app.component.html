@@ -35,7 +35,7 @@
                     <input type="text" maxlength="40"  id="input" name="input" class="input"
                        placeholder="Enter a make, model, or year" autocomplete="off" autofocus>
 
-                      <button  class="button"  (click)="search">Search</button>
+                      <button  class="button"  (click)="search()">Search</button>
 
 
                     <!-- <a href="">Vehicles</a> -->
@@ -44,22 +44,22 @@
 
                   <li>
                     <!-- <a href="">Details</a> -->
-                    <a routerLink="/add">Details</a>
+                    <a routerLink="/create">Create</a>
                   </li>
 
                   <li>
                     <!-- <a href="">Routing</a> -->
-                    <a routerLink="/add">Routing</a>
+                    <!-- <a routerLink="/add">Routing</a> -->
                   </li>
 
                   <li>
                     <!-- <a href="">About Us</a> -->
-                    <a routerLink="/add">About Us</a>
+                    <!-- <a routerLink="/add">About Us</a> -->
                   </li>
             </ul>
 
         </nav>
-        <div>
+        <div style="margin: 0px 20px 0px 20px;">
           <router-outlet></router-outlet>
         </div>
   </div>
